@@ -20,31 +20,137 @@ function App() {
       ctx.fillStyle = "#fff8ef"
       ctx.fillRect(0, 0, 400, 400)
 
+      // 影
+ctx.fillStyle = "rgba(0,0,0,0.15)"
+
+ctx.beginPath()
+ctx.ellipse(210, 320, 110, 35, 0, 0, Math.PI * 2)
+ctx.fill()
+
       // 土台
       ctx.fillStyle = "#d6b48a"
       ctx.beginPath()
       ctx.ellipse(200, 300, 100, 30, 0, 0, Math.PI * 2)
       ctx.fill()
 
-      // モンブラン線
-      for (let i = 0; i < 80; i++) {
-        const x = 120 + Math.random() * 160
-        const y = 120 + Math.random() * 140
+      // モンブラン本体
 
-        ctx.strokeStyle = "#b07a4f"
-        ctx.lineWidth = 3
+const centerX = 200
+const topY = 120
+const bottomY = 280
+const maxWidth = 140
 
-        ctx.beginPath()
-        ctx.moveTo(x, y)
-        ctx.lineTo(x + (Math.random() - 0.5) * 10, y + 80)
-        ctx.stroke()
-      }
+// ペースト保存用
+const pasteLines = []
 
-      // 栗
-      ctx.fillStyle = "#7a4a24"
-      ctx.beginPath()
-      ctx.arc(chestnutX, 100, 20, 0, Math.PI * 2)
-      ctx.fill()
+for (let i = 0; i < 55; i++) {
+
+  // 左右位置 (-1 ~ 1)
+  const t = (i / 54) * 2 - 1
+
+  // 山型シルエット
+  const curve = Math.cos(t * Math.PI / 2)
+
+  // x位置
+  const x = centerX + t * maxWidth * 0.5
+
+  // 高さ
+  const startY =
+    topY + (1 - curve) * 80
+
+  // 太さ
+  const lineWidth =
+    8 - Math.abs(t) * 4
+
+  // 線データ保存
+  pasteLines.push({
+    x,
+    startY,
+    lineWidth,
+  })
+}
+
+// 描画
+pasteLines.forEach((line, index) => {
+
+  const x = line.x
+  const y = line.startY
+
+  // 色グラデーション
+  const gradient = ctx.createLinearGradient(
+    x,
+    y,
+    x,
+    bottomY
+  )
+
+  gradient.addColorStop(0, "#f0d798")
+  gradient.addColorStop(0.4, "#d8b36a")
+  gradient.addColorStop(1, "#a06b32")
+
+  ctx.strokeStyle = gradient
+
+  ctx.lineWidth = line.lineWidth
+
+  ctx.lineCap = "round"
+
+  ctx.beginPath()
+
+  // 上から開始
+  ctx.moveTo(x, y)
+
+  // モンブランっぽいうねり
+  ctx.bezierCurveTo(
+    x + Math.sin(index * 0.5) * 25,
+    y + 40,
+
+    x - Math.sin(index * 0.5) * 20,
+    y + 100,
+
+    x,
+    bottomY
+  )
+
+  ctx.stroke()
+})
+
+// 生クリーム
+const creamGradient = ctx.createRadialGradient(
+  200,
+  115,
+  10,
+  200,
+  115,
+  45
+)
+
+creamGradient.addColorStop(0, "#ffffff")
+creamGradient.addColorStop(1, "#e8dccf")
+
+ctx.fillStyle = creamGradient
+
+ctx.beginPath()
+ctx.arc(200, 120, 35, 0, Math.PI * 2)
+ctx.fill()
+
+      // 栗グラデーション
+const chestnutGradient = ctx.createRadialGradient(
+  chestnutX - 5,
+  95,
+  5,
+  chestnutX,
+  100,
+  25
+)
+
+chestnutGradient.addColorStop(0, "#c58a52")
+chestnutGradient.addColorStop(1, "#6b3b1d")
+
+ctx.fillStyle = chestnutGradient
+
+ctx.beginPath()
+ctx.arc(chestnutX, 85, 20, 0, Math.PI * 2)
+ctx.fill()
     }
 
     draw()
