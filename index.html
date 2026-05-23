@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>ぶちぶちモンブラン</title>
+</head>
+
+<body>
+  <canvas id="game"></canvas>
+
+  <script>
+    const canvas = document.getElementById("game")
+    const ctx = canvas.getContext("2d")
+
+    canvas.width = 400
+    canvas.height = 400
+
+    // 背景
+    ctx.fillStyle = "#fff8ef"
+    ctx.fillRect(0, 0, 400, 400)
+
+    // 土台
+    ctx.fillStyle = "#d6b48a"
+    ctx.beginPath()
+    ctx.ellipse(200, 300, 100, 30, 0, 0, Math.PI * 2)
+    ctx.fill()
+
+    // モンブランのペースト線
+    for (let i = 0; i < 80; i++) {
+      const x = 120 + Math.random() * 160
+      const y = 120 + Math.random() * 140
+
+      ctx.strokeStyle = "#b07a4f"
+      ctx.lineWidth = 3
+
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.lineTo(x + (Math.random() - 0.5) * 10, y + 80)
+      ctx.stroke()
+    }
+
+    // 栗
+    ctx.fillStyle = "#7a4a24"
+    ctx.beginPath()
+    ctx.arc(200, 100, 20, 0, Math.PI * 2)
+    ctx.fill()
+  </script>
+</body>
+</html>
+
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html> -->
