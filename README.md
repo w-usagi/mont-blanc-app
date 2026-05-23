@@ -1,8 +1,15 @@
-# React + Vite
+# ぶちぶちモンブラン
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## コメント
+#### 松田好花さんに届け！    
+ということで**まさかの第2弾**クソゲー好きの松田さんのためにゲームを作ってみました。<br> 
+(AIに助けてもらいながらモンブランの描画だけで4時間かかりました)<br>
+(心が折れています)
 
-Currently, two official plugins are available:
+<img src="モンブラン.png" width="50%">
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 概要
+モンブランに縦にフォークを入れていき、いかに早く崩さずに食べ進めるかを極めるゲーム<br>
+(だがしかし、技術力皆無でそこまで到達できず...)<br>
+(さて、どうしたものか...)<br>
+(やっぱり野田さんに頼んでくださいm(_ _)m)
