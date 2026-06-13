@@ -306,16 +306,16 @@ function App() {
 
           ctx.bezierCurveTo(
             x +
-              Math.sin(
-                index * 0.5
-              ) * 25,
+            Math.sin(
+              index * 0.5
+            ) * 25,
 
             y + 40,
 
             x -
-              Math.sin(
-                index * 0.5
-              ) * 20,
+            Math.sin(
+              index * 0.5
+            ) * 20,
 
             y + 100,
 
@@ -502,9 +502,9 @@ function App() {
 
           if (
             distance <
-              line.lineWidth + 3 &&
+            line.lineWidth + 3 &&
             fork.y >
-              line.startY &&
+            line.startY &&
             fork.y < bottomY
           ) {
 
@@ -544,14 +544,34 @@ function App() {
     <div
       style={{
         display: "flex",
-        justifyContent: "center",
-        paddingTop: "40px",
+        flexDirection: "column",   /* 子要素を縦並びにする */
+        justifyContent: "center",  /* 縦方向の真ん中 */
+        alignItems: "center",      /* 横方向の真ん中 */
+        minHeight: "100vh",        /* 画面全体の高さ（100%）を確保する */
+        boxSizing: "border-box",
+        padding: "20px",
+        backgroundColor: "#fff8ef" /* 背景色をキャンバスと合わせると一体感が出ます */
       }}
     >
+      {/* === 遊び方の記載（ここに追加） === */}
+      <div style={{ textAlign: "center", marginBottom: "20px", color: "#7a3f16" }}>
+        <h1 style={{ margin: "0 0 10px 0", fontSize: "24px" }}>🌰 ぶちぶちモンブラン</h1>
+        <p style={{ margin: "5px 0", fontSize: "14px" }}>
+          【遊び方】画面をクリックしてフォークを表示！フォークを縦に入れて、Let's ぶちぶち！(大野さんごめんなさい、横は未対応です...)
+        </p>
+        <p style={{ margin: "5px 0", fontSize: "12px", opacity: 0.8 }}>
+          {/*※ 音が出ます。画面を一度クリックするとサウンドが有効になります。*/}
+        </p>
+      </div>
+
+      {/* === ゲーム画面 === */}
       <canvas
         ref={canvasRef}
         style={{
-          border: "2px solid #ccc",
+          border: "4px solid #d8b36a", /* 少しオシャレな色に */
+          borderRadius: "8px",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+          backgroundColor: "#fff"
         }}
       />
     </div>
